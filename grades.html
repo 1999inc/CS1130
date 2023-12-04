@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Fahrenheit to Celsius</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="format.css">
+    </head>
+    <body>
+        <h1>Grade Computation</h1>
+        <h2>Simply input a your grade in the box below and press the button!</h2>
+        <label for="inputScore">Score:</label>
+        <input id="inputScore" type="number"><br>
+        <label for="inputItems">Items:</label>
+        <input id="inputItems" type="number"><br>
+        <label for="inputBase">Base:</label>
+        <input id="inputBase" type="number"><br>
+        <button onclick="compute()">Compute</button>
+        <script></script>
+        <p>
+            <h4 id="output"></h4>
+        </p>
+        
+        <form>
+            <input type="button" value="Main Menu" onclick="history.back()">
+        </form>
+
+        <script>
+            function compute() {
+                var inputScore = document.getElementById("inputScore").value*1
+                var inputItems = document.getElementById("inputItems").value*1
+                var inputBase = document.getElementById("inputBase").value*1
+
+                var result = Math.round((inputScore/inputItems)*(100-inputBase) + inputBase)
+                var letterGrade = ''
+
+                if (result < 72) {
+                    letterGrade = 'F'
+                }
+                if (result >= 72 && result <= 75) {
+                    letterGrade = 'D'
+                }
+                if (result >= 76 && result <= 79) {
+                    letterGrade = 'C'
+                }
+                if (result >= 80 && result <= 83) {
+                    letterGrade = 'C+'
+                }
+                if (result >= 84 && result <= 87) {
+                    letterGrade = 'B'
+                }
+                if (result >= 88 && result <= 91) {
+                    letterGrade = 'B+'
+                }
+                if (result >= 92 && result <= 100) {
+                    letterGrade = 'A'
+                }
+                document.getElementById("output").innerHTML = "The result is "+letterGrade, "(" +result, ")"
+            }
+        </script>
+    </body>
+</html>

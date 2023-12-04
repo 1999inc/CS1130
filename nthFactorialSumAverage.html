@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The nth Factorial, Sum, and Average</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="format.css">
+    </head>
+    <body>
+        <h1>The nth Factorial, Sum, and Average</h1>
+        <h2>Simply input a number in the box below and press the button!</h2>
+        <label for="input">Input:</label>
+        <input id="input" type="number">
+        <button onclick="computeFactorial(); computeSum(); computeAverage()">Compute</button>
+        <script></script>
+        <p>
+            <label for="output">The value of the nth Factorial:</label>
+            <input id="outputFactorial" type="number" readonly> <br><br>
+            <label for="output">The Sum:</label>
+            <input id="outputSum" type="number" readonly> <br><br>
+            <label for="output">The Average:</label>
+            <input id="outputAverage" type="number" readonly> <br><br>
+        </p>
+        <form>
+            <input type="button" value="Main Menu" onclick="history.back()">
+        </form>
+        <script>
+            function computeFactorial() {
+                var limit = document.getElementById("input").value*1
+                var counter = 1
+                var accumulator = 1
+                while (counter <= limit) {
+                    accumulator = accumulator * counter
+                    counter++
+                }
+                document.getElementById("outputFactorial").value = accumulator
+            }
+
+            function computeSum() {
+                var input = document.getElementById("input").value*1
+                var accumulator = 0, counter = 1
+                do {
+                    accumulator = accumulator + counter
+                    console.log(accumulator)
+                    counter++
+                } while (counter <= input)
+                document.getElementById("outputSum").value = accumulator
+            }
+
+            function computeAverage () {
+                var input = document.getElementById("input").value*1
+                var counter
+                var accumulator = 0
+                for (counter = 1; counter <= input; counter++) {
+                    accumulator = accumulator + counter
+                    var average = accumulator/counter
+                }
+                document.getElementById("outputAverage").value = average
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!-- 
+Online HTML, CSS and JavaScript editor to run code online.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="format.css" />
+    <title>Income Tax Calculator</title>
+</head>
+
+<body>
+    <h1> Income Tax Calculator Program</h1>
+    <p>
+        Please input your taxable income on the below and press the calculate button once you're done. <br>
+        Refer to the table below for various tax brackets.
+    </p>
+    <label for="inputTaxableIncome">Taxable Income:</label>
+    <input id="inputTaxableIncome" type="number"> <button onclick="compute()">Calculate</button> <br>
+    <label for="outputIncomeTax">Income Tax:</label>
+    <input id="outputIncomeTax" type="number" readonly> <br><br>
+    <img src="taxincomebracket.png" alt="taxbracket.img">
+
+    <form>
+        <input type="button" value="Main Menu" onclick="history.back()">
+    </form>
+
+    <script>
+        function compute() {
+            var taxableIncome = document.getElementById("inputTaxableIncome").value
+            var basicTax, rate, reserve
+            if (taxableIncome < 250000) {
+                basicTax = 0
+                rate = 1
+            }
+            if (taxableIncome >= 250000 && taxableIncome <= 400000) {
+                basicTax = 0
+                rate = 0.2
+                reserve = 250000
+            }
+            if (taxableIncome >= 400000 && taxableIncome <= 800000) {
+                basicTax = 30000
+                rate = 0.25
+                reserve = 400000
+            }
+            if (taxableIncome >= 800000 && taxableIncome <= 2000000) {
+                basicTax = 130000
+                rate = 0.30
+                reserve = 800000
+            }
+            if (taxableIncome >= 2000000 && taxableIncome <= 800000000) {
+                basicTax = 490000
+                rate = 0.32
+                reserve = 2000000
+            }
+            if (taxableIncome > 8000000) {
+                basicTax = 2410000
+                rate = 0.35
+                reserve = 8000000
+            }
+
+            var outputIncomeTax = (taxableIncome - reserve) * rate + basicTax
+            document.getElementById("outputIncomeTax").value = outputIncomeTax
+        }
+    </script>
+</body>
+
+</html>
