@@ -113,13 +113,15 @@
             }
             // delete function
             function deleteData() {
-                let choice = prompt("Please enter the row number you want to delete.")
                 let l = payroll.length
-                --choice
                 if (l == 0) {
                     alert("Please add an employee first before pressing delete.")
-                } else if (choice > l) {
-                    alert("You have entered the wrong number. Please try again.")
+                    return
+                }
+                let choice = prompt("Please enter the row number you want to delete.")
+                --choice
+                if (choice > l) {
+                    window.alert("You have entered a wrong number. Please try again.")
                 } else {
                     payroll.splice(choice, 1)
                     display()
