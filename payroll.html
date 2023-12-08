@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 50%;
+              }
+              
+              td, th {
+                border: 2px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+              }
+              
+              tr:nth-child(even) {
+                background-color: #dddddd;
+              }
+
+              .center {
+                margin-left: auto;
+                margin-right: auto;
+              }
+        </style>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Payroll Program</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="format.css">
+    </head>
+    <body>
+        <h1>Payroll Program</h1>
+        <h2>Please fill out the necessary forms and press the add button.</h2>
+        
+        <!-- inputs -->
+        <label for="employeeNameInput">Employee Name:</label>
+        <input id="employeeNameInput" type="text"> <br> <br>
+        <label for="daysWorkedInput">Days Worked:</label>
+        <input id="daysWorkedInput" type="number"> <br> <br>
+        <label for="dailyRateInput">Daily Rate:</label>
+        <input id="dailyRateInput" type="number"> <br> <br>
+        <label for="deductionNumInput">Deduction Amount:</label>
+        <input id="deductionNumInput" type="number"> <br> <br>
+        <button onclick="add()">Add</button>
+        <button onclick="deleteData()">Delete</button> <br> <br>
+
+        <form>
+            <input type="button" value="Main Menu" onclick="history.back">
+        </form> <br>
+
+        <!-- table ui/output -->
+        <table class="center">
+            <tr>
+                <th>No.</th>
+                <th>Employee Name</th>
+                <th>Days Worked</th>
+                <th>Daily Rate</th>
+                <th>Gross Pay</th>
+                <th>Deduction Amount</th>
+                <th>Net Pay</th>
+            </tr>
+            <tbody id="outputTable"></tbody>
+        </table>
+        
+        <script>
+            payroll = []
+            // add function
+            function add() {
+                var name = document.getElementById("employeeNameInput").value;
+                var dW = parseInt(document.getElementById("daysWorkedInput").value);
+                var dR = parseFloat(document.getElementById("dailyRateInput").value);
+                var dA = parseFloat(document.getElementById("deductionNumInput").value);
+                let daysWorked = dW.toFixed(0);
+                let dailyRate = dR.toFixed(2);
+                let deductAmt = dA.toFixed(2);
+                var gP = daysWorked * dailyRate;
+                let grossPay = gP.toFixed(2);
+                var nP = grossPay - deductAmt;
+                let netPay = nP.toFixed(2);
+                employee = {name, daysWorked, dailyRate, deductAmt, grossPay, netPay};
+                document.getElementById("daysWorkedInput").value = "";
+                document.getElementById("employeeNameInput").value = "";
+                document.getElementById("dailyRateInput").value = "";
+                document.getElementById("deductionNumInput").value = "";
+                payroll.push(employee);
+                display();
+            }
+
+            //display function
+            function display() {
+                body = document.getElementById("outputTable")
+                body.innerHTML = ""
+                payroll.forEach((employee, index) => {
+                    row = body.insertRow()
+                    rowNum = row.insertCell(0)
+                    nameCell = row.insertCell(1)
+                    daysWorkedCell = row.insertCell(2)
+                    dailyRateCell = row.insertCell(3)
+                    grossPayCell = row.insertCell(4)
+                    deductionAmountCell = row.insertCell(5)
+                    netPayCell = row.insertCell(6)
+                    
+                    rowNum.innerHTML = index + 1
+                    nameCell.innerHTML = employee.name
+                    daysWorkedCell.innerHTML = employee.daysWorked
+                    dailyRateCell.innerHTML = employee.dailyRate
+                    deductionAmountCell.innerHTML = employee.deductAmt
+                    grossPayCell.innerHTML = employee.grossPay
+                    netPayCell.innerHTML = employee.netPay 
+                })
+            }
+            // delete function
+            function deleteData() {
+                let choice = prompt("Please enter the row number you want to delete.")
+                let l = payroll.length
+                --choice
+                if (choice > l) {
+                    window.alert("You have entered a wrong number. Please try again.")
+                } else {
+                    payroll.splice(choice, 1)
+                    display()
+                }
+
+            }
+        </script>
+    </body>
+</html>
