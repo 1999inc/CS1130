@@ -44,12 +44,13 @@
         <label for="deductionNumInput">Deduction Amount:</label>
         <input id="deductionNumInput" type="number"> <br> <br>
         <button onclick="add()">Add</button>
-        <button onclick="deleteData()">Delete</button> <br> <br>
+        <input id="deletePositionInput" type="number">
+        <button id="deletePosition"> Delete</button> <br> <br>
 
         <form>
             <input type="button" value="Main Menu" onclick="history.back()">
         </form> <br>
-
+        
         <!-- table ui/output -->
         <table class="center">
             <tr>
@@ -64,6 +65,14 @@
             <tbody id="outputTable"></tbody>
         </table>
         
+        <dialog id="dlgConfirmCancel">
+            <form method="dialog">
+                <h4 id="dlgmsg"></h4>   
+                <button id="btnConfirm" value="confirm" >Confirm</button>
+                <button id="btnCancel" value="cancel" >Cancel</button>
+            </form>
+        </dialog>
+
         <script>
             payroll = []
             // add function
@@ -111,23 +120,43 @@
                     netPayCell.innerHTML = employee.netPay 
                 })
             }
-            // delete function
-            function deleteData() {
-                let l = payroll.length
-                if (l == 0) {
-                    alert("Please add an employee first before pressing delete.")
-                    return
+            //delete block
+            document.getElementById("deletePosition").addEventListener("click", () => {
+                let x, l
+                length = payroll.length
+                x = document.getElementById("deletePositionInput").value*1
+                --x
+                if (x >= 0 && x < 1) {
+                    document.getElementById("dlgmsg").innerHTML = "Are you sure in deleting this item?"
+                    dlgConfirmCancel.showModal()
                 }
-                let choice = prompt("Please enter the row number you want to delete.")
-                --choice
-                if (choice > l) {
-                    window.alert("You have entered a wrong number. Please try again.")
-                } else {
-                    payroll.splice(choice, 1)
-                    display()
+            })
+            btnConfirm.addEventListener("click", () => {
+                dlgConfirmCancel.returnValue="confirm";
+                dlgConfirmCancel.close("confirm");
+         
+                });
+        
+                btnCancel.addEventListener("click", () => {
+                dlgConfirmCancel.returnValue="cancel";
+                dlgConfirmCancel.close("cancel");
+         
+                });
+        
+                dlgConfirmCancel.addEventListener("close",(e)=>{
+                var rst=e.target.returnValue;
+                var lblmsg = document.getElementById("dlgmsg").innerHTML;
+                if (rst=="confirm") {
+                    if (lblmsg=="Delete the employee?") {
+                        x = document.getElementById("delitem").value*1;
+                        --x
+                        payroll.splice(x,1);
+                        display();
+                        document.getElementById("delitem").value='';
+                    } 
                 }
-
-            }
+                
+                });   
         </script>
     </body>
 </html>
