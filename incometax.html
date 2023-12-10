@@ -5,10 +5,17 @@ Online HTML, CSS and JavaScript editor to run code online.
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="format.css" />
     <title>Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: Comfortaa;
+            font-size: 16px;
+          }
+    </style>
 </head>
 
 <body>
@@ -21,7 +28,7 @@ Online HTML, CSS and JavaScript editor to run code online.
     <input id="inputTaxableIncome" type="number"> <button onclick="compute()">Calculate</button> <br>
     <label for="outputIncomeTax">Income Tax:</label>
     <input id="outputIncomeTax" type="number" readonly> <br><br>
-    <img src="taxincomebracket.PNG" alt="taxincomebracket.PNG">
+    <img src="taxincomebracket.PNG" alt="taxbracket.png">
 
     <form>
         <input type="button" value="Main Menu" onclick="history.back()">
