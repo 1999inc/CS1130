@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>The nth Factorial, Sum, and Average</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="format.css">
+        <style>
+            body {
+                font-family: Comfortaa;
+                font-size: 16px;
+              }
+        </style>
     </head>
     <body>
         <h1>The nth Factorial, Sum, and Average</h1>
@@ -14,14 +21,16 @@
         <label for="input">Input:</label>
         <input id="input" type="number">
         <button onclick="computeFactorial(); computeSum(); computeAverage()">Compute</button>
-        <script></script>
+
         <p>
-            <label for="output">The value of the nth Factorial:</label>
-            <input id="outputFactorial" type="number" readonly> <br><br>
-            <label for="output">The Sum:</label>
-            <input id="outputSum" type="number" readonly> <br><br>
-            <label for="output">The Average:</label>
-            <input id="outputAverage" type="number" readonly> <br><br>
+            <div>
+                <label for="outputFactorial" >The value of the nth Factorial:</label>
+                <input id="outputFactorial" type="number" readonly> <br>
+                <label for="outputSum">The Sum:</label>
+                <input id="outputSum" type="number" readonly> <br>
+                <label for="outputAverage">The Average:</label>
+                <input id="outputAverage" type="number" readonly>
+            </div>
         </p>
         <form>
             <input type="button" value="Main Menu" onclick="history.back()">
