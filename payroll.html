@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
         <style>
             table {
                 font-family: arial, sans-serif;
@@ -21,6 +22,10 @@
               .center {
                 margin-left: auto;
                 margin-right: auto;
+              }
+              body {
+                font-family: Comfortaa;
+                font-size: 16px;
               }
         </style>
         <meta charset="utf-8">
@@ -122,40 +127,39 @@
             }
             //delete block
             document.getElementById("deletePosition").addEventListener("click", () => {
-                let x, l
-                length = payroll.length
+                var x, l
+                l = payroll.length
                 x = document.getElementById("deletePositionInput").value*1
                 --x
-                if (x >= 0 && x < 1) {
+                console.log("l value: "+ l)
+                if (x >= 0 && x < l) {
+                    console.log("if statement success")
                     document.getElementById("dlgmsg").innerHTML = "Are you sure in deleting this item?"
                     dlgConfirmCancel.showModal()
                 }
             })
-            btnConfirm.addEventListener("click", () => {
-                dlgConfirmCancel.returnValue="confirm";
-                dlgConfirmCancel.close("confirm");
-         
+                btnConfirm.addEventListener("click", () => {
+                    dlgConfirmCancel.returnValue="confirm";
+                    dlgConfirmCancel.close("confirm");
                 });
         
                 btnCancel.addEventListener("click", () => {
-                dlgConfirmCancel.returnValue="cancel";
-                dlgConfirmCancel.close("cancel");
-         
+                    dlgConfirmCancel.returnValue="cancel";
+                    dlgConfirmCancel.close("cancel");
                 });
         
                 dlgConfirmCancel.addEventListener("close",(e)=>{
-                var rst=e.target.returnValue;
-                var lblmsg = document.getElementById("dlgmsg").innerHTML;
-                if (rst=="confirm") {
-                    if (lblmsg=="Delete the employee?") {
-                        x = document.getElementById("delitem").value*1;
-                        --x
-                        payroll.splice(x,1);
-                        display();
-                        document.getElementById("delitem").value='';
-                    } 
-                }
-                
+                    var rst=e.target.returnValue;
+                    var lblmsg = document.getElementById("dlgmsg").innerHTML;
+                    if (rst=="confirm") {
+                        if (lblmsg=="Are you sure in deleting this item?") {
+                            x = document.getElementById("deletePositionInput").value*1;
+                            --x
+                            payroll.splice(x,1);
+                            display();
+                            document.getElementById("deletePositionInput").value='';
+                        } 
+                    }
                 });   
         </script>
     </body>
